@@ -4,10 +4,15 @@ We have one Serializer for each of our models, and we specify exactly what field
 """
 
 from django.contrib.auth.models import User, Group
-from .models import PikifyUser
+from .models import PikifyUser, Image
 from rest_framework import serializers
 
 class PikifyUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PikifyUser
-        fields = ['id', 'displayName']
+        fields = ['id', 'firstName', 'lastName', 'createdAt', 'displayName', 'password', 'profileImageUrl']
+
+class ImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Image 
+        fields = ['id', 'user', 'url', 'private']
