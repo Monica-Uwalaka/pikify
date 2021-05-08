@@ -3,15 +3,23 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import UserSignUpForm, searchImageForm
 
 from rest_framework import status
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
-
+from rest_framework import generics
 from .models import PikifyUser, Image
 from .serializers import PikifyUserSerializer, ImageSerializer
+
+from pexels_api import API
+
+PEXELS_API_KEY = '563492ad6f917000010000015fed1bf3240b45b783e929fb372a40eb'
+api = API(PEXELS_API_KEY)
 
 
 class Index(APIView):
@@ -19,11 +27,11 @@ class Index(APIView):
     GET: view index page
     """
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'index.html'
+    template_name = 'pikify/index.html'
 
     def get(self, request, format = None):
         #render sign up form
-        return render(request, 'index.html')
+        return render(request, 'pikify/index.html')
     
 
 class SignUp(APIView):
@@ -32,75 +40,109 @@ class SignUp(APIView):
     POST: Sign up new user 
     """
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'signup.html'
+    template_name = 'pikify/signup.html'
+
+    
 
     def get(self, request, format = None):
         #render sign up form
-        return render(request, 'signup.html')
+        form = UserSignUpForm()
+        context = {
+        'title': 'Sign up',
+        'form': form
+        }
+        return render(request, 'pikify/signup.html', context)
 
     def post(self, request, format = None):
+        #validate sign up form
         #create user 
-        
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        user = User.objects.create_user(first_name = first_name, last_name = last_name, username = username, email = email, password = password)
-        user.save()
-        return redirect('home')
-      
-
-class SignIn(APIView):
-    """
-    GET: View sign up page 
-    POST: Sign up new user 
-    """
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'signin.html'
-
-    def get(self, request, format = None):
-        #render sign in form
-        return render(request, 'signin.html')
-
-    def post(self, request, format = None):
-        #sign in user
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # Redirect to a success page.
-            return redirect('home')
-        
-        else:
-            # Return an 'invalid login' error message.
+        form = UserSignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Your account has been created {username} ! You can now sign in')
             return redirect('sign-in')
 
-class SignOut(APIView):
-    """
-    GET: View sign up page 
-    POST: Sign up new user 
-    """
-
-    def get(self, request, format = None):
-        #render sign in form
-        logout(request)
-        return redirect('index')
+        else:
+            form = UserSignUpForm(request.POST)
+            context = {
+            'title': 'Sign up',
+            'form': form
+            }
+            return render(request, 'pikify/signup.html', context)
 
 class Home(APIView):
     """
     GET: View home page
+    POST: View search results 
     """
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'home.html'
+    template_name = 'pikify/home.html'
 
     def get(self, request, format = None):
         #render sign in form
-        return render(request, 'home.html')
+        return render(request, 'pikify/home.html')
 
-def myRepo(request):
-    return HttpResponse("You are in your repo")
+    def post(self, request, format = None):
+      
+        form = searchImageForm(request.POST)
+
+        #validate sign up form
+        if form.is_valid():
+            searched = form.cleaned_data.get('searched')
+
+            #do the request here
+            api.search(searched, page=1, results_per_page=5)
+            photos = api.get_entries()
+
+            photo_urls = []
+            for photo in photos:
+                photo_urls.append(photo.original)
+
+            context = {
+                'searched':searched,
+                'urls': photo_urls
+            }
+            return render(request, 'pikify/search.html', context)
+
+        else:
+            searchImageForm(request.POST)
+            context = {
+                'form': form
+            }
+            return render(request, 'pikify/home.html', context)
+       
+
+
+
+
+class Profile(APIView):
+    """
+    GET: View signed in user profile
+    """
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'pikify/home.html'
+
+    #@method_decorator(login_required)
+    def get(self, request, format = None):
+        #render sign in form
+        return render(request, 'pikify/profile.html')
+
+
+
+
+
+class MyRepo(generics.ListCreateAPIView):
+
+    serializer_class = ImageSerializer
+    template_name = 'pikify/myrepo.html'
+    
+
+    def list(self, request):
+        context = {
+        'images' : Image.objects.all()
+        }
+        return render(request, 'pikify/myrepo.html', context)
 
 
 class UserList(APIView):
@@ -148,45 +190,3 @@ class UserDetail(APIView):
         user = self.get_object(id)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class PikifyUserViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows users to be viewed or edited.
-#     """
-#     queryset = PikifyUser.objects.all()
-#     serializer_class = PikifyUserSerializer
-
-#     # Using lookup_field as search param
-#     # https://stackoverflow.com/questions/56431755/django-rest-framework-urls-without-pk
-#     lookup_field = 'id'
-
-#     def retrieve(self, request, id):
-#         try: 
-#             pikify_user = PikifyUser.objects.get(id=id)
-#             serializer = PikifyUserSerializer(pikify_user)
-
-#         except(PikifyUser.DoesNotExist):
-#             return Response(status=status.HTTP_404_NOT_FOUND)
-        
-#         return Response(serializer.data)

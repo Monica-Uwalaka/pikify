@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 
 # Represents a user on Pikify
 class PikifyUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profileImageUrl = models.TextField(default = '')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     # https://www.ordinarycoders.com/django-custom-user-profile
 

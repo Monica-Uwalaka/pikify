@@ -1,0 +1,12 @@
+{% extends "pikify/base.html" %}
+{% block content %}
+    <h2>You have signed out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+        Already have an account? 
+        <a class="ml-2" href="{% url 'sign-in' %}">Sign in again</a>
+        </small>
+    </div>
+{% endblock content %}
+
+
