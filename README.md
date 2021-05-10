@@ -19,12 +19,13 @@ Pikify is a web application that allows its registered users to save images into
 ## 3. <a name='TechnologyStack'></a> Technology Stack
 - [Django](https://www.djangoproject.com/)
 - [Django Rest Framework](https://www.django-rest-framework.org/)
+- [Python](https://www.python.org/)
 - [Bootstrap](https://getbootstrap.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [JavaScript](https://www.javascript.com/)
 - HTML
 - CSS
-- Python
+
 
 
 
