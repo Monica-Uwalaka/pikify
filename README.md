@@ -61,6 +61,7 @@ python manage.py test
 ```
 
 ## 5. <a name='Deployedapp'></a> Deployed app
+https://pikify.herokuapp.com/pikify/
 
 
 
