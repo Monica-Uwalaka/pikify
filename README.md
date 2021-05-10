@@ -33,6 +33,11 @@ Assuming you already postgres installed and a superuser created, first create a 
 psql 
 CREATE DATABASE myproject; # Inside psql shell
 ```
+Clone Pikify git repository
+```bash
+https://github.com/Monica-Uwalaka/pikify.git
+```
+
 Next, setup a virtual environment and install requirements:
 ```bash
 cd pikify
