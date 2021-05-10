@@ -1,0 +1,12 @@
+{% extends "pikify/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method = "post" >
+  {% csrf_token %}
+  <div class="input-group rounded">
+    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+      aria-describedby="search-addon" name = "searched" />
+      <button type="submit" class="btn btn-outline-primary search">search</button>
+  </div>
+</form>
+{% endblock content %}
