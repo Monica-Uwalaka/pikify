@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-z1bzxqez@n!ans8%+kxq!*e$i(nvwnc2r^+z#ip%id!q%2l!(h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", False))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'pikify.apps.PikifyConfig',
     'crispy_forms',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,4 +151,5 @@ LOGIN_URL = 'login'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
 MEDIA_URL = '/media/'
 
+CORS_ORIGIN_ALLOW_ALL = True
 django_on_heroku.settings(locals())
