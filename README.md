@@ -8,6 +8,7 @@ Pikify is a web application that allows its registered users to save images into
 1. [ Entity Relational Diagram](#EntityRelationalDiagram)
 2. [ Prototypes](https://github.com/Monica-Uwalaka/pikify/wiki/Prototypes)
 3. [ Technology Stack](#TechnologyStack)
+4.  [ Installing](#Installing)
  
 
 
@@ -25,6 +26,10 @@ Pikify is a web application that allows its registered users to save images into
 - [JavaScript](https://www.javascript.com/)
 - HTML
 - CSS
+
+## 4. <a name='Installing'></a> Installing
+
+
 
 
 
