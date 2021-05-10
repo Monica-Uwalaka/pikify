@@ -1,23 +1,32 @@
 {% extends "pikify/base.html" %}
-
+{% load static %}
 {% block content%}
-
     <div>
-        <button class="btn btn-outline-info" type="submit">Save</button>
+        <form method = "post" >
+            {% csrf_token %}
+            <div class="input-group rounded">
+              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" name = "searched" />
+                <button type="submit" class="btn btn-outline-primary search">search</button>
+            </div>
+          </form>
     </div>
     <br>
     <div>
+        <button id = "saveButton" class="btn btn-outline-info" type="submit">Save</button>
+    </div>
+    <br>
+    <div class = 'imagesContainer' >
         {% for url in urls %}
-        <div>
-            <img src= {{url}}  width="400" height="500">
-            <br><br>
-            <c
+        <div class = 'imagediv' onclick="selectImage('{{url}}')" >
+            <img src= {{url}}  >
         </div>
-        <br>
         {% endfor %}
     </div>
-    
-
 {% endblock content%}
+{% block extra_js %}    
+    <script type="text/JavaScript" language="Javascript" src="{% static 'js/search.js' %}"> </script>
+{% endblock extra_js %}
+
 
 

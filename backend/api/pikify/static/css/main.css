@@ -82,3 +82,26 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+ img {
+    display: block;
+    width: 200px  !important ;
+    height: 200px !important;
+    object-fit: contain;  /*or object-fit: contain; */
+
+  }
+
+  .imageSelected{
+    border: 10px solid red !important;
+  } 
+
+  .imagesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+  
+  }
+  .imagediv{
+    margin: 10px;
+    border: 1px  #021a40;
+  }

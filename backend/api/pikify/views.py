@@ -13,14 +13,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics
+from rest_framework.parsers import JSONParser
+
 from .models import PikifyUser, Image
 from .serializers import PikifyUserSerializer, ImageSerializer
+import json
 
 from pexels_api import API
 
 PEXELS_API_KEY = '563492ad6f917000010000015fed1bf3240b45b783e929fb372a40eb'
 api = API(PEXELS_API_KEY)
-
 
 class Index(APIView):
     """
@@ -33,7 +35,6 @@ class Index(APIView):
         #render sign up form
         return render(request, 'pikify/index.html')
     
-
 class SignUp(APIView):
     """
     GET: View sign up page 
@@ -41,8 +42,6 @@ class SignUp(APIView):
     """
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'pikify/signup.html'
-
-    
 
     def get(self, request, format = None):
         #render sign up form
@@ -62,7 +61,6 @@ class SignUp(APIView):
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created {username} ! You can now sign in')
             return redirect('sign-in')
-
         else:
             form = UserSignUpForm(request.POST)
             context = {
@@ -80,19 +78,17 @@ class Home(APIView):
     template_name = 'pikify/home.html'
 
     def get(self, request, format = None):
-        #render sign in form
         return render(request, 'pikify/home.html')
 
     def post(self, request, format = None):
-      
         form = searchImageForm(request.POST)
 
-        #validate sign up form
+        #validate search form
         if form.is_valid():
             searched = form.cleaned_data.get('searched')
 
             #do the request here
-            api.search(searched, page=1, results_per_page=5)
+            api.search(searched, page=1, results_per_page=30)
             photos = api.get_entries()
 
             photo_urls = []
@@ -113,9 +109,6 @@ class Home(APIView):
             return render(request, 'pikify/home.html', context)
        
 
-
-
-
 class Profile(APIView):
     """
     GET: View signed in user profile
@@ -129,20 +122,55 @@ class Profile(APIView):
         return render(request, 'pikify/profile.html')
 
 
+class Search(APIView):
+
+    serializer_class = ImageSerializer
+    template_name = 'pikify/myrepo.html'
+    parser_classes = [JSONParser]
+    
+
+    def get (self, request):
+        return render(request, 'pikify/search.html')
+
+    
+    def post(self, request, format = None):
+        #save the images to the database 
+        
+        data = request.data
+        
+        for url in data:
+            Image.objects.create(user = request.user, url = url, private = True)
+
+        return HttpResponse({'received data': request.data})
 
 
 
-class MyRepo(generics.ListCreateAPIView):
+class MyRepo(APIView):
 
     serializer_class = ImageSerializer
     template_name = 'pikify/myrepo.html'
     
 
-    def list(self, request):
+    def get(self, request, format = None):
+        images = Image.objects.filter(user = request.user).values('url')
+        print("here")
+        print(images)
         context = {
-        'images' : Image.objects.all()
+        'images' : images
         }
         return render(request, 'pikify/myrepo.html', context)
+
+    def post(self, request, format = None):
+        #delete the images from database 
+        
+        data = request.data
+        
+        for url in data:
+            Image.objects.get(url = url).delete()
+
+        return render(request, 'pikify/myrepo.html')
+
+
 
 
 class UserList(APIView):
