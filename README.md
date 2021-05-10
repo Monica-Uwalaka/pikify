@@ -8,7 +8,7 @@ Pikify is a web application that allows its registered users to save images into
 1. [ Entity Relational Diagram](#EntityRelationalDiagram)
 2. [ Prototypes](https://github.com/Monica-Uwalaka/pikify/wiki/Prototypes)
 3. [ Technology Stack](#TechnologyStack)
-4.  [ Installing](#Installing)
+4.  [ Setup](#Setup)
  
 
 
@@ -27,7 +27,26 @@ Pikify is a web application that allows its registered users to save images into
 - HTML
 - CSS
 
-## 4. <a name='Installing'></a> Installing
+## 4. <a name='Setup'></a> Setup
+Assuming you already postgres installed and a superuser created, first create a postgres database for Pikify's server:
+```bash
+psql 
+CREATE DATABASE myproject; # Inside psql shell
+```
+Next, setup a virtual environment and install requirements:
+```bash
+cd back-end/api
+virtualenv venv --python=python3
+source venv/bin/activate # Assuming Linux/MacOS, Venv\Scripts\activate for Windows
+pip install -r requirements.txt
+cd api/
+python manage.py migrate
+```
+From now on, to run the server from the back-end/api/ directory (ensure your virtualenv is always activated first):
+```bash
+python manage.py runserver
+```
+
 
 
 
