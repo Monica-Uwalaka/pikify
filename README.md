@@ -29,10 +29,10 @@ Pikify is a web application that allows its registered users to save images into
 - CSS
 
 ## 4. <a name='Setup'></a> Setup
-Assuming you already postgres installed and a superuser created, first create a postgres database for Pikify's server:
+Assuming you already have postgres installed and a superuser created, first create a postgres database for Pikify's server:
 ```bash
 psql 
-CREATE DATABASE myproject; # Inside psql shell
+CREATE DATABASE pikify_database; # Inside psql shell
 ```
 Clone Pikify git repository
 ```bash
