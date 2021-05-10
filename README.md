@@ -34,7 +34,7 @@ Assuming you already have postgres installed and a superuser created, first crea
 psql 
 CREATE DATABASE pikify_database; # Inside psql shell
 ```
-Clone Pikify git repository
+Clone Pikify's git repository
 ```bash
 https://github.com/Monica-Uwalaka/pikify.git
 ```
