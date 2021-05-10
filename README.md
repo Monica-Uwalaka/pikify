@@ -7,6 +7,7 @@ Pikify is a web application that allows its registered users to save images into
 ## Table of Contents
 1. [ Entity Relational Diagram](#EntityRelationalDiagram)
 2. [ Prototype](#Prototype)
+3. [ Technology Stack](#TechnologyStack)
  
 
 
@@ -22,6 +23,17 @@ Pikify is a web application that allows its registered users to save images into
 ![Pikify Home](https://user-images.githubusercontent.com/44309803/117650823-6ed5c180-b14e-11eb-9cfd-f6cc53d45326.png)
 ![Home](https://user-images.githubusercontent.com/44309803/117650843-71d0b200-b14e-11eb-9e18-09cd543b0e0f.png)
 ![Image ](https://user-images.githubusercontent.com/44309803/117650901-814ffb00-b14e-11eb-9a79-ff0f28da9e1f.png)
+
+## 3. <a name='TechnologyStack'></a> Technology Stack
+- [Django](https://www.djangoproject.com/)
+- [Django Rest Framework](https://www.django-rest-framework.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [JavaScript](https://www.javascript.com/)
+- [HTML]()
+- [CSS]()
+- [Python]()
+
 
 
 
