@@ -9,6 +9,7 @@ Pikify is a web application that allows its registered users to save images into
 2. [ Prototypes](https://github.com/Monica-Uwalaka/pikify/wiki/Prototypes)
 3. [ Technology Stack](#TechnologyStack)
 4.  [ Setup](#Setup)
+5.  [Tests](#Tests)
  
 
 
@@ -51,7 +52,7 @@ From now on, to run the server from the back-end/api/ directory (ensure your vir
 ```bash
 python manage.py runserver
 ```
-# How to run tests
+## 4. <a name='Tests'></a> Tests
 Pikify has a model and endpoint tests for our back-end. Ensure that your virtualenv to run the back-end is activated before running the below commands.
 ```bash
 cd back-end/api
