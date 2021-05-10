@@ -35,19 +35,23 @@ CREATE DATABASE myproject; # Inside psql shell
 ```
 Next, setup a virtual environment and install requirements:
 ```bash
-cd back-end/api
+cd pikify
 virtualenv venv --python=python3
 source venv/bin/activate # Assuming Linux/MacOS, Venv\Scripts\activate for Windows
+cd back-end/api
 pip install -r requirements.txt
-cd api/
 python manage.py migrate
 ```
 From now on, to run the server from the back-end/api/ directory (ensure your virtualenv is always activated first):
 ```bash
 python manage.py runserver
 ```
-
-
+# How to run tests
+Pikify has a model and endpoint tests for our back-end. Ensure that your virtualenv to run the back-end is activated before running the below commands.
+```bash
+cd back-end/api
+python manage.py test
+```
 
 
 
