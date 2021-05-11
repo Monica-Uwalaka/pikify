@@ -21,6 +21,10 @@ Pikify is a web application that allows its registered users to save images into
 ## 1. <a name='EntityRelationalDiagram'></a> Entity Relational Diagram
 ![pikify (2)](https://user-images.githubusercontent.com/44309803/117649071-4fd63000-b14c-11eb-866c-cc60d5bd979c.png)
 
+## 2. Prototypes
+https://github.com/Monica-Uwalaka/pikify/wiki/Prototypes
+
+
 
 ## 3. <a name='TechnologyStack'></a> Technology Stack
 - [Django](https://www.djangoproject.com/)
@@ -70,7 +74,6 @@ https://pikify.herokuapp.com/pikify/
 
 ## 7. <a name='Video'></a> Video
 https://www.youtube.com/watch?v=fuYcnAU1-Pw
-
 
 
 
