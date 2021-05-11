@@ -29,6 +29,7 @@ Pikify is a web application that allows its registered users to save images into
 - [Bootstrap](https://getbootstrap.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [JavaScript](https://www.javascript.com/)
+- [Pexels API](https://www.pexels.com/api/documentation/)
 - HTML
 - CSS
 
