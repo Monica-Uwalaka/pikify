@@ -68,8 +68,7 @@ https://pikify.herokuapp.com/pikify/
 
 
 ## 7. <a name='Video'></a> Video
-https://www.youtube.com/watch?v=9jAE9cMGSfQ
-
+https://www.youtube.com/watch?v=fuYcnAU1-Pw
 
 
 
