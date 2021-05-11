@@ -62,7 +62,6 @@ Pikify has a model and endpoint tests for our back-end. Ensure that your virtual
 cd back-end/api
 python manage.py test
 ```
-## 5. <a name='Tests'></a> Tests
 
 ## 6. <a name='Deployedapp'></a> Deployed app
 https://pikify.herokuapp.com/pikify/
