@@ -11,6 +11,9 @@ Pikify is a web application that allows its registered users to save images into
 4.  [ Setup](#Setup)
 5.  [Tests](#Tests)
 6.  [ Deployed app](#Deployedapp)
+7.  [ Video](#Video)
+ 
+ 
  
 
 
@@ -59,9 +62,14 @@ Pikify has a model and endpoint tests for our back-end. Ensure that your virtual
 cd back-end/api
 python manage.py test
 ```
+## 5. <a name='Tests'></a> Tests
 
-## 5. <a name='Deployedapp'></a> Deployed app
+## 6. <a name='Deployedapp'></a> Deployed app
 https://pikify.herokuapp.com/pikify/
+
+
+## 7. <a name='Video'></a> Video
+
 
 
 
