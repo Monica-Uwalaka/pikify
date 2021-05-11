@@ -2,7 +2,7 @@
 const selectedImages = []
 function selectImage(url){
     if(selectedImages.includes(url)){
-        selectedImages = selectedImages.filter(e => e !== url);
+        selectedImages = selectedImages.filter(a => a !== url);
     }
     else{
         selectedImages.push(url)
@@ -34,7 +34,6 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 
-
 function deleteImages(e){
     e.preventDefault()
     console.log("here")
@@ -47,7 +46,8 @@ function deleteImages(e){
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(selectedImages)
-    }).then(res => console.log(res))
+    }).then(location.reload())
+    
 }
 
 

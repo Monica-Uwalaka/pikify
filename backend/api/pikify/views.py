@@ -93,7 +93,7 @@ class Home(APIView):
 
             photo_urls = []
             for photo in photos:
-                photo_urls.append(photo.original)
+                photo_urls.append(photo.medium)
 
             context = {
                 'searched':searched,
@@ -166,7 +166,7 @@ class MyRepo(APIView):
         data = request.data
         
         for url in data:
-            Image.objects.get(url = url).delete()
+            Image.objects.get(user = request.user, url = url).delete()
 
         return render(request, 'pikify/myrepo.html')
 

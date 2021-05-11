@@ -45,6 +45,7 @@ function saveImages(e){
     },
     body: JSON.stringify(selectedImages)
     }).then(res => console.log(res))
+    
 }
 
 
