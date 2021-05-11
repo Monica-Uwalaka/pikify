@@ -53,7 +53,7 @@ Next, setup a virtual environment and install requirements:
 cd pikify
 virtualenv venv --python=python3
 source venv/bin/activate # Assuming Linux/MacOS, Venv\Scripts\activate for Windows
-cd back-end/api
+cd backend/api
 pip install -r requirements.txt
 python manage.py migrate
 ```
