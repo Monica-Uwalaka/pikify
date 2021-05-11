@@ -62,7 +62,7 @@ From now on, to run the server from the backend/api/ directory (ensure your virt
 python manage.py runserver
 ```
 ## 5. <a name='Tests'></a> Tests
-Pikify has a model and endpoint tests for our back-end. Ensure that your virtualenv to run the back-end is activated before running the below commands.
+Pikify has model and endpoint tests for its backend. Ensure that your virtualenv to run the backend is activated before running the below commands.
 ```bash
 cd backend/api
 python manage.py test
