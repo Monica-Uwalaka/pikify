@@ -11,7 +11,7 @@ Pikify is a web application that allows its registered users to save images into
 4.  [ Setup](#Setup)
 5.  [Tests](#Tests)
 6.  [ Deployed app](#Deployedapp)
-7.  [ Video](#Video)
+7.  [ Video demo](#VideoDemo)
  
  
  
@@ -72,8 +72,8 @@ python manage.py test
 https://pikify.herokuapp.com/pikify/
 
 
-## 7. <a name='Video'></a> Video
-https://www.youtube.com/watch?v=fuYcnAU1-Pw
+## 7. <a name='VideoDemo'></a> Video demo
+https://www.youtube.com/watch?v=WuJkMYsa7AA
 
 
 
