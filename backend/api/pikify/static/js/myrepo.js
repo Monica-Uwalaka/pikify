@@ -1,18 +1,16 @@
-
-const selectedImages = []
+let selectedImages = []
 function selectImage(url){
-    if(selectedImages.includes(url)){
+    if(selectedImages.includes(url, event)){
         selectedImages = selectedImages.filter(a => a !== url);
+        event.target.parentNode.style.borderColor= "#333333"
     }
     else{
         selectedImages.push(url)
+        event.target.parentNode.style.borderColor= "#FFA194"
     }  
-    console.log(selectedImages)
 }
+
 document.querySelector("#deleteButton").addEventListener("click", deleteImages);
-
-
-
 
 // https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
 function getCookie(name) {
@@ -33,7 +31,6 @@ function getCookie(name) {
 
 const csrftoken = getCookie('csrftoken');
 
-
 function deleteImages(e){
     e.preventDefault()
     console.log("here")
@@ -46,8 +43,7 @@ function deleteImages(e){
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(selectedImages)
-    }).then(location.reload())
-    
+    }).then(location.reload())  
 }
 
 

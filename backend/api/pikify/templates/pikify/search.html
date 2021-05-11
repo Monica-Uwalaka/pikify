@@ -18,8 +18,8 @@
     <br>
     <div class = 'imagesContainer' >
         {% for url in urls %}
-        <div class = 'imagediv' onclick="selectImage('{{url}}')" >
-            <img src= {{url}}  >
+        <div class = 'imagediv' onclick="selectImage('{{url}}', event)" >
+            <img src= {{url}} >
         </div>
         {% endfor %}
     </div>

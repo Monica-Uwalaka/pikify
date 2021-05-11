@@ -1,7 +1,6 @@
 {% extends "pikify/base.html" %}
 {% load static %}
 {% block content%}
-
     <br>
     <div>
         <button id = "deleteButton" class="btn btn-outline-info" type="submit">Delete</button>
@@ -9,9 +8,8 @@
     <br>
     <div class = 'imagesContainer' >
         {% for url in images %}
-        <div class = 'imagediv' onclick="selectImage('{{url.url}}')" >
+        <div class = 'imagediv' onclick="selectImage('{{url.url}}', event)" >
             <img src= {{url.url}}  >
-            <br><br>
         </div>
         <br>
         {% endfor %}

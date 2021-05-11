@@ -1,14 +1,13 @@
-
 let selectedImages = []
-
-function selectImage(url){
+function selectImage(url, event){
     if(selectedImages.includes(url)){
-        selectedImages = selectedImages.filter(e => e !== url);
+        selectedImages = selectedImages.filter(a => a !== url);  
+        event.target.parentNode.style.borderColor= "#333333"
     }
     else{
         selectedImages.push(url)
+        event.target.parentNode.style.borderColor= "#FFA194"
     }  
-    console.log(selectedImages)
 }
 
 document.querySelector("#saveButton").addEventListener("click", saveImages);
@@ -44,8 +43,7 @@ function saveImages(e){
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(selectedImages)
-    }).then(res => console.log(res))
-    
+    }).then(location.reload())  
 }
 
 
